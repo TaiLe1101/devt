@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ToggleTheme } from "@/components/toggle-theme";
+import { SocialLink } from "@/components/social-link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +28,64 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <header className="supports-backdrop-blur:bg-background/90 sticky top-0 z-40 w-full bg-background/40 backdrop-blur-lg">
+            <div className="container mx-auto ">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-16">
+                  <div className="flex items-center gap-2">
+                    <Link href="/">
+                      <Image
+                        src="/images/logo.png"
+                        alt="logo web"
+                        width={48}
+                        height={48}
+                      />
+                    </Link>
+                    <Link href="/" className="font-bold text-xl">
+                      Dân chơi lập trình
+                    </Link>
+                  </div>
+
+                  <nav>
+                    <ul className="flex gap-4">
+                      <li>
+                        <Link href="/blog">Blog</Link>
+                      </li>
+                      <li>
+                        <Link href="/portfolio">Portfolio</Link>
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+                <div className="flex items-center gap-2">
+                  <SocialLink
+                    src="/images/fb-logo.png"
+                    alt="social fb"
+                    href="https://facebook.com/TaiLe1101"
+                  ></SocialLink>
+                  <SocialLink
+                    src="/images/github-logo.png"
+                    alt="social fb"
+                    href="https://github.com/TaiLe1101"
+                  ></SocialLink>
+                  <ToggleTheme />
+                </div>
+              </div>
+            </div>
+          </header>
+          <main className="min-h-[110vh]">{children}</main>
+          <footer>Footer</footer>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -69,4 +69,19 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #979797;
+    border-radius: 100vh;
+  }
 }
