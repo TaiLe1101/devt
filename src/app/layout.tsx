@@ -6,6 +6,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ToggleTheme } from "@/components/toggle-theme";
 import { SocialLink } from "@/components/social-link";
+import { NavRootLayout } from "@/components/nav-root-layout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -51,21 +52,12 @@ export default function RootLayout({
                         height={48}
                       />
                     </Link>
-                    <Link href="/" className="font-bold text-xl">
+                    <Link href="/" className="font-bold">
                       Dân chơi lập trình
                     </Link>
                   </div>
 
-                  <nav>
-                    <ul className="flex gap-4">
-                      <li>
-                        <Link href="/blog">Blog</Link>
-                      </li>
-                      <li>
-                        <Link href="/portfolio">Portfolio</Link>
-                      </li>
-                    </ul>
-                  </nav>
+                  <NavRootLayout />
                 </div>
                 <div className="flex items-center gap-2">
                   <SocialLink
